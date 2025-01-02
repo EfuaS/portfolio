@@ -1,0 +1,22 @@
+:root {
+  --secondary-text-color: #e2e8f0;
+}
+
+body {
+  @apply text-slate-400 bg-slate-900;
+  font-family: "Inter", sans-serif;
+  padding: 50px 40px;
+}
+
+h1 {
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--secondary-text-color);
+}
+
+h2 {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
+  color: var(--secondary-text-color);
+}

@@ -22,25 +22,12 @@ const mySocialMedia = [
 ];
 ---
 
-<section class="h-full flex flex-col justify-between">
+<section class="lg:max-h-screen flex flex-col justify-between">
   <div class="space-y-2">
     <h1>Lawrencia Efua S. Cobbina</h1>
     <h2>Frontend Engineer</h2>
     <p>I build good websites...... blah blah blah</p>
   </div>
-
-  <nav class="lg:block hidden my-4">
-    <ul>
-      {
-        navDetails.map((navLink) => (
-          <li>
-            {" "}
-            <a href={navLink.url}> {navLink.name}</a>
-          </li>
-        ))
-      }
-    </ul>
-  </nav>
 
   <div class="flex gap-6 my-4">
     {

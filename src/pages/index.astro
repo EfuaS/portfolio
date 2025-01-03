@@ -14,9 +14,11 @@ import MainContent from "@components/MainContent.astro";
     <meta name="generator" content={Astro.generator} />
     <title>Efua's Portfolio</title>
   </head>
-  <body class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:m-8">
-    <VerticalSideHeader />
-    <MainContent />
+  <body>
+    <div class="grid grid-cols-1 lg:grid-cols-2 p-10 lg:p-20 h-screen">
+      <VerticalSideHeader />
+      <MainContent />
+    </div>
     <slot />
   </body>
 </html>

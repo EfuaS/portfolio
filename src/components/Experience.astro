@@ -1,1 +1,29 @@
-<h2>My Experience</h2>
+---
+import Badge from "./utils/Badge.astro";
+import { experienceData } from "@components/utils/experienceDetails.ts";
+---
+
+<section>
+  <p class="font-medium text-[#e2e8f0] mb-4">EXPERIENCE / PROJECTS</p>
+  <div>
+    {
+      experienceData.map((details) => (
+        <div class="grid grid-cols-1 gap-y-2 lg:gap-y-0 lg:grid-cols-3 my-8">
+          <p class="uppercase text-xs font-semibold col-span-1">
+            {details.duration}
+          </p>
+          <div class="space-y-3 col-span-2">
+            <h3>{details.role}</h3>
+            <p class="text-sm">{details.about}</p>
+
+            <div class="flex gap-2 flex-wrap py-2">
+              {details.tools.map((tool) => (
+                <Badge label={tool} />
+              ))}
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>

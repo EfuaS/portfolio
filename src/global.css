@@ -5,7 +5,7 @@
 body {
   @apply text-slate-400 bg-slate-900;
   font-family: "Inter", sans-serif;
-  padding: 50px 40px;
+  height: 100%;
 }
 
 h1 {
@@ -18,5 +18,11 @@ h2 {
   font-weight: 500;
   font-size: 20px;
   line-height: 28px;
+  color: var(--secondary-text-color);
+}
+h3 {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
   color: var(--secondary-text-color);
 }

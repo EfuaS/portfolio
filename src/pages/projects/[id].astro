@@ -24,7 +24,7 @@ const sectionDetails = [
   { header: "duration", detail: interestedProject.duration },
   { header: "tools", detail: interestedProject.tools },
   { header: "team size", detail: interestedProject.teamSize },
-  { header: "developer's pride", detail: interestedProject.developerPride },
+  { header: "developer pride", detail: interestedProject.developerPride },
   { header: "challenge faced", detail: interestedProject.challengeFaced },
   { header: "business impact", detail: interestedProject.businessImpact },
 ];
@@ -40,13 +40,13 @@ const sectionDetails = [
     <title>Efua's Portfolio</title>
   </head>
   <body class="grid">
-    <main class="lg:w-[60%] min-h-screen w-[80%] m-auto pt-8">
+    <main class="lg:w-[60%] min-h-screen w-[90%] m-auto pt-8">
       <h2 class="text-center font-bold">{interestedProject.name}</h2>
 
-      <section class="space-y-8 m-8">
+      <section class="space-y-8 lg:m-8 my-8">
         {
           sectionDetails.map((project) => (
-            <div class="grid grid-cols-8">
+            <div class="grid grid-cols-8 gap-x-2">
               <p class="uppercase text-xs text-teal-300/85 font-semibold col-span-2">
                 {project.header}
               </p>

@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 import Badge from "./utils/Badge.astro";
 import { experienceData } from "@components/utils/experienceDetails.ts";
 ---
@@ -14,9 +15,17 @@ import { experienceData } from "@components/utils/experienceDetails.ts";
               {details.duration}
             </p>
             <div class="space-y-3 col-span-2">
-              <h3 class="lg:group-hover:text-teal-300  p-3 rounded-lg lg:group-hover:transition lg:group-hover:ease-in-out lg:group-hover:delay-75">
-                {details.name}
-              </h3>
+              <div class="flex gap-x-1 items-center">
+                <h3 class="lg:group-hover:text-teal-300 text-teal-300 lg:text-slate-400 font-bold rounded-lg lg:group-hover:transition lg:group-hover:ease-in-out lg:group-hover:delay-75">
+                  {details.name}
+                </h3>
+                <Icon
+                  name="mdi:arrow-top-right-thin"
+                  class={
+                    "lg:group-hover:text-teal-300 text-teal-300 lg:text-slate-400"
+                  }
+                />
+              </div>
               <p class="text-sm">{details.about}</p>
 
               <div class="flex gap-2 flex-wrap py-2">

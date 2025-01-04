@@ -1,5 +1,8 @@
 ---
 import { Icon } from "astro-icon/components";
+import AstroLogo from "@assets/astro.svg";
+import { Image } from "astro:assets";
+
 const navDetails = [
   {
     name: "About",
@@ -16,9 +19,12 @@ const navDetails = [
 ];
 
 const mySocialMedia = [
-  { icon: "mdi:github", link: "" },
-  { icon: "mdi:linkedin", link: "" },
-  { icon: "mdi:gmail", link: "" },
+  { icon: "mdi:github", link: "https://github.com/EfuaS" },
+  {
+    icon: "mdi:linkedin",
+    link: "https://www.linkedin.com/in/lawrencia-cobbina/",
+  },
+  { icon: "mdi:gmail", link: "mailto:efuas33@gmail.com" },
 ];
 ---
 
@@ -29,14 +35,22 @@ const mySocialMedia = [
     <p>I build good websites...... blah blah blah</p>
   </div>
 
-  <div class="flex gap-6 my-4">
-    {
-      mySocialMedia.map((social) => (
-        <Icon
-          name={social.icon}
-          class="text-3xl hover:cursor-pointer hover:text-white"
-        />
-      ))
-    }
+  <div>
+    <div class="flex gap-6 my-4">
+      {
+        mySocialMedia.map((social) => (
+          <a target="_blank" href={social.link}>
+            <Icon
+              name={social.icon}
+              class="text-3xl hover:cursor-pointer hover:text-white"
+            />
+          </a>
+        ))
+      }
+    </div>
+    <div class="flex items-center gap-2">
+      <p class="text-sm">Built with</p>
+      <Image src={AstroLogo} alt={"Astrologo"} class={"svgFilter"} />
+    </div>
   </div>
 </section>

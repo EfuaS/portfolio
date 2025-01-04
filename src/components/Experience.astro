@@ -8,21 +8,25 @@ import { experienceData } from "@components/utils/experienceDetails.ts";
   <div>
     {
       experienceData.map((details) => (
-        <div class="grid grid-cols-1 gap-y-2 lg:gap-y-0 lg:grid-cols-3 my-8">
-          <p class="uppercase text-xs font-semibold col-span-1">
-            {details.duration}
-          </p>
-          <div class="space-y-3 col-span-2">
-            <h3>{details.role}</h3>
-            <p class="text-sm">{details.about}</p>
+        <a href={"/portfolio/projects/" + details.id}>
+          <div class="grid group grid-cols-1 gap-y-2 lg:gap-y-0 lg:grid-cols-3 my-8 hover:cursor-pointer lg:hover:bg-slate-800/50 lg:hover:drop-shadow-lg p-3 rounded-lg lg:hover:transition lg:hover:ease-in-out lg:hover:delay-75">
+            <p class="uppercase text-xs font-semibold col-span-1">
+              {details.duration}
+            </p>
+            <div class="space-y-3 col-span-2">
+              <h3 class="lg:group-hover:text-teal-300  p-3 rounded-lg lg:group-hover:transition lg:group-hover:ease-in-out lg:group-hover:delay-75">
+                {details.name}
+              </h3>
+              <p class="text-sm">{details.about}</p>
 
-            <div class="flex gap-2 flex-wrap py-2">
-              {details.tools.map((tool) => (
-                <Badge label={tool} />
-              ))}
+              <div class="flex gap-2 flex-wrap py-2">
+                {details.tools.map((tool) => (
+                  <Badge label={tool} />
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+        </a>
       ))
     }
   </div>

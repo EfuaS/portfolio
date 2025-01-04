@@ -1,0 +1,68 @@
+---
+import type { GetStaticPaths } from "astro";
+import { experienceData } from "@components/utils/experienceDetails";
+import "../../global.css";
+import Badge from "@components/utils/Badge.astro";
+
+export const getStaticPaths = (() => {
+  return [
+    { params: { id: "project1" } },
+    { params: { id: "project2" } },
+    { params: { id: "project3" } },
+    { params: { id: "project4" } },
+    { params: { id: "project5" } },
+  ];
+}) satisfies GetStaticPaths;
+
+const { id } = Astro.params;
+const interestedProject = experienceData.filter(
+  (project) => project.id === id
+)[0];
+
+const sectionDetails = [
+  { header: "about", detail: interestedProject.about },
+  { header: "duration", detail: interestedProject.duration },
+  { header: "tools", detail: interestedProject.tools },
+  { header: "team size", detail: interestedProject.teamSize },
+  { header: "developer's pride", detail: interestedProject.developerPride },
+  { header: "challenge faced", detail: interestedProject.challengeFaced },
+  { header: "business impact", detail: interestedProject.businessImpact },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/portfolio/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Efua's Portfolio</title>
+  </head>
+  <body class="grid">
+    <main class="lg:w-[60%] min-h-screen w-[80%] m-auto pt-8">
+      <h2 class="text-center font-bold">{interestedProject.name}</h2>
+
+      <section class="space-y-8 m-8">
+        {
+          sectionDetails.map((project) => (
+            <div class="grid grid-cols-8">
+              <p class="uppercase text-xs text-teal-300/85 font-semibold col-span-2">
+                {project.header}
+              </p>
+              {project.header === "tools" ? (
+                <div class="flex gap-2  flex-wrap col-span-6">
+                  {interestedProject.tools.map((tool: string) => (
+                    <Badge label={tool} />
+                  ))}
+                </div>
+              ) : (
+                <p class="text-sm col-span-6">{project.detail}</p>
+              )}
+            </div>
+          ))
+        }
+      </section>
+    </main>
+  </body>
+</html>

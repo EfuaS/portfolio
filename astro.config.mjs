@@ -9,5 +9,8 @@ import icon from "astro-icon";
 export default defineConfig({
   integrations: [tailwind(), icon()],
   site: "https://efuas.github.io",
-  base:"/portfolio/"
+  base: "/portfolio/",
+  experimental: {
+    svg: true,
+  },
 });

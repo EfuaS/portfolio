@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import myHeadshot from "../../assets/headshot.png";
+import myHeadshot from "../../assets/headshot.webp";
 import AOS from "aos";
 import { useScrollSpy } from "../../custom-hooks/useScrollSpy";
 

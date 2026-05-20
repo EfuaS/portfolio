@@ -1,5 +1,5 @@
-import mcMarineImg from "../assets/mcmarine.png";
-import kachaImg from "../assets/kacha.png";
+import mcMarineImg from "../assets/mcmarine.webp";
+import kachaImg from "../assets/kacha.webp";
 
 export type ExperienceDTO = {
   id: string;

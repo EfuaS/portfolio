@@ -1,4 +1,4 @@
-import longHeadShot from "../../assets/headshot.png";
+import longHeadShot from "../../assets/headshot.webp";
 import Typewriter from "typewriter-effect";
 import AOS from "aos";
 import { useEffect } from "react";

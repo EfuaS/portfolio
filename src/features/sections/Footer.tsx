@@ -59,7 +59,7 @@ export default function Footer() {
         </div>
         <div className="text-end mt-10 lg:mt-0">
           <p>
-            Designed and Developed by
+           Envisioned, Designed and Developed by
             <span className="text-accent-color"> me </span>@ 2026
           </p>
           <DownloadResume />

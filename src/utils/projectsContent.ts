@@ -87,10 +87,10 @@ export const experienceData: ExperienceDTO[] = [
       "Orval",
       "Axios",
     ],
-    businessImpact: `By digitizing multiple event workflows in one platform, the product reduced manual coordination effort, improved visibility into attendance and logistics, and enabled faster operational decisions through reporting and QR-enabled event processing`,
-    developerPride: `I am proud of independently driving frontend delivery for a high-workflow product and turning complex event operations into a cleaner, more intuitive experience for both organizers and participants`,
+    businessImpact: `By bringing multiple event workflows into one digital platform, we completely eliminated the headache of manual coordination. Organizers instantly got better visibility into logistics and attendance, making decision-making a breeze. Plus, adding reporting tools and QR-enabled event processing made check-ins and operations incredibly fast. It took the stress out of event day and completely modernized how they run things!`,
+    developerPride: `As the sole frontend engineer on this project, I independently drove the delivery of a mobile-first platform designed to streamline church event planning, registration, and coordination. Taking on my very first freelance gig completely solo was a huge milestone. I'm incredibly proud of how I took massive, chaotic event workflows and transformed them into a clean, intuitive experience that makes life easier for organizers, volunteers, and participants alike!`,
     teamSize: `2`,
-    challengeFaced: `A key challenge was presenting analytics dynamically for different user roles and data types without creating duplicated UI logic. I solved this by using reusable React components and configuration-driven rendering, which kept the codebase lean while supporting tailored metric views.`,
+    challengeFaced: `A key challenge was presenting analytics dynamically for different user roles and data types without creating duplicated UI logic. I solved this by using reusable React components and user-specific rendering, which kept the codebase lean while supporting tailored metric views.`,
   },
   {
     id: "trybz",
@@ -131,13 +131,10 @@ export const experienceData: ExperienceDTO[] = [
       "Bitbucket",
       "Axios",
     ],
-    developerPride: `Through the development of a platform that allows individuals to cherish, honor, and preserve the memories of their loved ones, including pets, via an innovative virtual book, I gained a strong sense of professional fulfillment. This project not only validated my technical expertise as a developer but also allowed me to contribute meaningfully to enhancing emotional connections. I take pride in knowing that my work has had a positive impact, providing people with a meaningful way to remember and celebrate important relationships.`,
+    developerPride: `Building a platform that helps people cherish and preserve memories of their loved ones—including their beloved pets—was incredibly fulfilling. Beyond validating my frontend skills, this project allowed me to code something with genuine emotional value. I take immense pride in knowing that the UI I built helped people celebrate important relationships and stay connected to the memories that matter most.`,
     teamSize: `2`,
-    challengeFaced: `One of the key challenges during this project was ensuring the responsive design of the digital tribute book. On larger screens, the book was displayed as a two-page spread, while on smaller devices, it seamlessly transitioned to a single-page format. Another challenge involved managing the dynamic positioning of photos within the book, ensuring they were consistently displayed correctly across various screen sizes and devices.`,
-    businessImpact: `The development of the Tribute Book web application provided significant value by offering users a personalized and interactive solution to preserve and honor memories. The integration of Turn.js to deliver a realistic page-turning experience set the application apart, providing a visually engaging and seamless user interface.
-
-By facilitating the creation, sharing, and exporting of tribute books, the application fostered emotional connections and encouraged social sharing, thereby increasing platform visibility and driving user referrals.
-`,
+    challengeFaced: `One of the key challenges during this project was ensuring the responsive design of the digital tribute book. On larger screens, the book was displayed as a two-page spread, while on smaller devices, it seamlessly transitioned to a single-page format. Another challenge involved managing the dynamic positioning of collage photos within the book, ensuring they were consistently displayed correctly across various screen sizes and devices.`,
+    businessImpact: `The Tribute Book app allows users to compile images and stories into a personalized, digital keepsake honoring a loved one. To make the experience truly special, I integrated Turn.js for a realistic, beautiful page-turning UI. Because the books were so meaningful and visually stunning, users naturally loved sharing them with friends and family.`,
   },
   {
     id: "kacha",
@@ -156,13 +153,17 @@ By facilitating the creation, sharing, and exporting of tribute books, the appli
       "Github",
       "Axios",
     ],
-    developerPride: `Successfully implemented 22+ UI screens and integrated 15+ API endpoints of the Kacha financial application within a month, delivering key features such as secure login, money transfers, bill payments, contributing to the app's rapid development and launch.`,
+    developerPride: `I’m incredibly proud of the sheer velocity I maintained on this project. In just one month, I cranked out 22+ UI screens and integrated 15+ APIs to get Kacha market-ready.
+
+Tackling essential features like secure authentication, transfers, and bill payments under a tight timeline proved that I can ship high-quality code at lightning speed when the pressure is on.`,
     teamSize: `6`,
     link: `https://www.kacha.et/`,
     image:
       "https://firebasestorage.googleapis.com/v0/b/efuas-portfolio-website.firebasestorage.app/o/assets%2Fkacha.webp?alt=media&token=d46ef3de-7cfd-4744-a8d1-5859ddff338d",
-    challengeFaced: `One of the key challenges during this project was effectively managing time and adapting to the fast-paced development environment, requiring efficient prioritization and rapid execution of tasks to meet project milestones.`,
-    businessImpact: `The rapid development and delivery of the Kacha financial application accelerated time-to-market, enabling quick adoption and meeting users' financial needs. By implementing key features like secure transactions, money transfers, and digital lending, the app contributed to early user acquisition and strengthened the platform’s competitive position. This fast-paced development supported the company’s business goals and laid the groundwork for future growth and expansion.`,
+    challengeFaced: `Nothing teaches you how to build software quite like a tight deadline on a large-scale project. I was tasked with helping launch three distinct app portals, requiring me to crank out five user stories a week. As a junior dev, this meant balancing a massive delivery schedule with a steep learning curve as I mastered React on the job. By focusing on rapid adaptation and clean coding practices, I didn't just help hit our launch date—I built a rock-solid foundation for my frontend career.`,
+    businessImpact: `Shipping the Kacha financial app at lightning speed meant we got it into users' hands right when they needed it most. I got to build core features like secure transactions, quick money transfers, and digital lending—tools that genuinely make a difference in people's daily financial lives.
+
+Because we moved quickly without sacrificing quality, the app immediately started gaining traction and gave the platform a massive competitive edge. It was incredibly rewarding to see my code directly drive early user growth and set the business up for some really exciting expansion down the road!`,
   },
   {
     id: "lovenotes",
@@ -181,9 +182,9 @@ By facilitating the creation, sharing, and exporting of tribute books, the appli
       "Bitbucket",
       "Axios",
     ],
-    developerPride: `Contribution to spreading kindness, fostering human connections, and positively influencing lives.`,
+    developerPride: `My biggest point of pride with this project was knowing my code directly helped spread kindness and bring people closer together. It’s incredibly rewarding to build software that moves beyond just tech stacks and actually leaves a positive, meaningful impact on real lives.`,
     teamSize: `2`,
-    challengeFaced: `One of the key challenges I faced was implementing a customizable love note card feature, where users needed to add text or clip art onto an image canvas. The requirement was to enable dynamic interactions such as drawing text or pasting graphics on top of a background image. To address this, I collaborated closely with a teammate and we chose Fabric.js, a powerful JavaScript library, to manage the canvas and facilitate these interactions. By leveraging Fabric.js, we were able to create a smooth, intuitive user experience that met the client's needs. The solution allowed for easy manipulation of elements on the canvas, enabling users to create personalized, visually appealing love notes. Ultimately, the client was very satisfied with the functionality, and the feature contributed to the overall success of the platform.`,
+    challengeFaced: `A major challenge was building a customizable "love note card" feature where users could dynamically type text or drag clip art directly onto a background image canvas. To pull this off smoothly, a teammate and I teamed up and leveraged Fabric.js. Using the library allowed us to manage complex canvas interactions seamlessly, making element manipulation intuitive and fun for the user. The client absolutely loved the final result, and it ended up being a standout feature for the entire platform!`,
     businessImpact: `My work on the Love Notes Around The World web application significantly contributed to enhancing user engagement and streamlining user interactions. By developing essential features such as login and registration functionality, user account management, and love note creation, I helped create a seamless and engaging experience that encouraged repeat visits and active participation. The public landing page effectively increased outreach, presenting the platform’s mission and purpose to a wider audience, which likely resulted in higher user acquisition.`,
   },
 ];

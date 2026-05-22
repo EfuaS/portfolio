@@ -72,7 +72,7 @@ const timeline = [
   },
   {
     title: "In-Progress - Node.js Backend Developer",
-    institution: "IBM",
+    institution: "From my colleagues",
     duration: "Current",
     description: `Pursuing a course in Node.js backend development to become a full stack developer.`,
     link: null,
@@ -96,7 +96,7 @@ export function Education() {
       matchMedia.add("(min-width: 768px)", () => {
         gsap.to(milestonesContainer.current, {
           // target the milestones cards div
-          xPercent: -2.9 * timeline.length, // translate the section to about 2 times the width of the cards to show all cards.
+          xPercent: -3 * timeline.length, // translate the section to about 2 times the width of the cards to show all cards.
           scrollTrigger: {
             trigger: myJourneySection.current, // trigger the translation when myJourneySection comes into view.
             start: "top 20%", //to properly center the milestone cards.

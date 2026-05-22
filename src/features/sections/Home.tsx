@@ -74,11 +74,14 @@ export function Home() {
           </h1>
 
           {/* Description */}
-          <p className="text-sm max-w-lg leading-relaxed">
-            Frontend Engineer specializing in building exceptional digital
-            experiences. Passionate about creating intuitive, performant web
-            applications using modern technologies. Curently studying to include
-            Node.js backend development to my arsenal of skills.
+          <p className="text-md max-w-lg leading-relaxed">
+            <b>Hi there! Welcome to my little corner of the internet.</b> <br />
+            By day, I’m a frontend engineer who loves crafting beautiful,
+            smooth, and awesome web experiences. By night? You’ll usually find
+            me lost in a video game, painting portraits, or jamming out to
+            music. (And yes, three cheers if you’re a Swiftie too!)
+            <br />
+            Grab a coffee, look around, and make yourself at home.
           </p>
 
           {/* Metrics */}

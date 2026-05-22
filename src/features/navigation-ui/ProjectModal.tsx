@@ -113,7 +113,7 @@ export default function ProjectModal({
               <h4 className="text-sm font-semibold text-orange-400 mb-1 flex items-center gap-2">
                 <ShieldAlert size={15} /> Key Challenge
               </h4>
-              <p className="text-xs leading-relaxed text-slate-300">{project.challengeFaced}</p>
+              <p className="text-sm leading-relaxed text-slate-300">{project.challengeFaced}</p>
             </div>
           )}
 
@@ -122,7 +122,7 @@ export default function ProjectModal({
               <h4 className="text-sm font-semibold text-emerald-400 mb-1 flex items-center gap-2">
                 <Award size={15} /> Developer Pride
               </h4>
-              <p className="text-xs leading-relaxed text-slate-300">{project.developerPride}</p>
+              <p className="text-sm leading-relaxed text-slate-300">{project.developerPride}</p>
             </div>
           )}
         </div>
@@ -130,7 +130,7 @@ export default function ProjectModal({
         {project.businessImpact && (
           <div className="mb-6 p-4 rounded-xl bg-indigo-500/5 border border-indigo-500/10">
             <h3 className="text-sm font-semibold text-indigo-400 mb-1">Business Impact</h3>
-            <p className="text-xs leading-relaxed text-slate-300">{project.businessImpact}</p>
+            <p className="text-sm leading-relaxed text-slate-300">{project.businessImpact}</p>
           </div>
         )}
 

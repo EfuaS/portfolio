@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import myHeadshot from "../../assets/headshot.webp";
 import AOS from "aos";
 import { useScrollSpy } from "../../custom-hooks/useScrollSpy";
 
@@ -46,8 +45,8 @@ export function Header() {
         <div className="md:flex items-center hidden">
           <div className="size-14 rounded-full overflow-hidden border-2 border-teal-300 shadow-md hover:shadow-teal-300/50 transition-shadow duration-300">
             <img
-              src={myHeadshot}
-              alt="Profile"
+              src="https://firebasestorage.googleapis.com/v0/b/efuas-portfolio-website.firebasestorage.app/o/assets%2Fheadshot.webp?alt=media&token=aafc8028-8231-4db9-a1eb-b02d499f6bf6"
+              alt="headShot"
               className="w-full h-full object-cover"
             />
           </div>
@@ -60,7 +59,7 @@ export function Header() {
             return (
               <li key={item.label}>
                 <a
-                  href={"#"+item.path}
+                  href={"#" + item.path}
                   className={`text-nowrap ease-in-out duration-300 px-3 py-1.5 rounded-full hover:bg-teal-400/10 hover:text-teal-300 ${
                     isActive
                       ? "text-teal-300 font-semibold text-lg animate-pulse"

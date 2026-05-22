@@ -1,6 +1,3 @@
-import mcMarineImg from "../assets/mcmarine.webp";
-import kachaImg from "../assets/kacha.webp";
-
 export type ExperienceDTO = {
   id: string;
   role: string;
@@ -37,7 +34,8 @@ export const experienceData: ExperienceDTO[] = [
       "Hostinger",
     ],
     link: `https://mcmarineservices.com/`,
-    image: mcMarineImg,
+    image:
+      "https://firebasestorage.googleapis.com/v0/b/efuas-portfolio-website.firebasestorage.app/o/assets%2Fmcmarine.webp?alt=media&token=90e717f7-904e-4c21-af27-792a11abd7d0",
   },
   {
     id: "grantspace",
@@ -161,7 +159,8 @@ By facilitating the creation, sharing, and exporting of tribute books, the appli
     developerPride: `Successfully implemented 22+ UI screens and integrated 15+ API endpoints of the Kacha financial application within a month, delivering key features such as secure login, money transfers, bill payments, contributing to the app's rapid development and launch.`,
     teamSize: `6`,
     link: `https://www.kacha.et/`,
-    image: kachaImg,
+    image:
+      "https://firebasestorage.googleapis.com/v0/b/efuas-portfolio-website.firebasestorage.app/o/assets%2Fkacha.webp?alt=media&token=d46ef3de-7cfd-4744-a8d1-5859ddff338d",
     challengeFaced: `One of the key challenges during this project was effectively managing time and adapting to the fast-paced development environment, requiring efficient prioritization and rapid execution of tasks to meet project milestones.`,
     businessImpact: `The rapid development and delivery of the Kacha financial application accelerated time-to-market, enabling quick adoption and meeting users' financial needs. By implementing key features like secure transactions, money transfers, and digital lending, the app contributed to early user acquisition and strengthened the platform’s competitive position. This fast-paced development supported the company’s business goals and laid the groundwork for future growth and expansion.`,
   },

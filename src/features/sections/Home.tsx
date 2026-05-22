@@ -1,8 +1,19 @@
-import longHeadShot from "../../assets/headshot.webp";
 import Typewriter from "typewriter-effect";
 import AOS from "aos";
 import { useEffect } from "react";
 import DownloadResume from "../navigation-ui/DownloadResume";
+
+function HeadShotImg() {
+  return (
+    <img
+      src="https://firebasestorage.googleapis.com/v0/b/efuas-portfolio-website.firebasestorage.app/o/assets%2Fheadshot.webp?alt=media&token=aafc8028-8231-4db9-a1eb-b02d499f6bf6"
+      alt="headShot"
+      className="w-full h-full object-cover"
+      // TODO: add shimmer while image loads
+    />
+  );
+
+}
 
 export function Home() {
   useEffect(() => {
@@ -11,16 +22,12 @@ export function Home() {
   }, []);
 
   return (
-    <section id="home" className="pt-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
-      <div className="lg:h-[80vh] grid grid-cols-1  lg:grid-cols-2  items-center">
+    <section id="home" className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
+      <div className="lg:h-[80vh] grid grid-cols-1 lg:grid-cols-2 items-center">
         {/* Mobile view smaller image */}
-          <div className="size-80 m-auto block mb-4 md:hidden rounded-full shadow-xl overflow-hidden">
-            <img
-              src={longHeadShot}
-              alt="Profile"
-              className="w-full h-full object-cover"
-            />
-          </div>
+        <div className="size-80 m-auto block mb-4 md:hidden rounded-full shadow-xl overflow-hidden">
+          <HeadShotImg />
+        </div>
 
         {/* Tablet view medium sized image */}
         <div
@@ -29,11 +36,7 @@ export function Home() {
           className="hidden md:flex lg:hidden items-center justify-center mb-6"
         >
           <div className="size-1/2 rounded-full shadow-xl overflow-hidden">
-            <img
-              src={longHeadShot}
-              alt="Profile"
-              className="w-full h-full object-cover"
-            />
+            <HeadShotImg />
           </div>
         </div>
 
@@ -44,9 +47,9 @@ export function Home() {
           className="flex flex-col justify-center space-y-6"
         >
           {/* Open to Work Badge */}
-            <span className="px-4 py-2 w-fit bg-teal-900/50 text-teal-300 rounded-full text-xs font-medium animate-bounce">
-              Open to work
-            </span>
+          <span className="px-4 py-2 w-fit bg-teal-900/50 text-teal-300 rounded-full text-xs font-medium animate-bounce">
+            Open to work
+          </span>
 
           {/* Name */}
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight text-secondary-text-color!">
@@ -104,11 +107,7 @@ export function Home() {
           className="hidden lg:flex items-center justify-center h-[95%] "
         >
           <div className="size-full rounded-3xl shadow-xl overflow-hidden">
-            <img
-              src={longHeadShot}
-              alt="Profile"
-              className="size-full object-cover"
-            />
+            <HeadShotImg />
           </div>
         </div>
       </div>

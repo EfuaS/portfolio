@@ -72,9 +72,9 @@ const timeline = [
   },
   {
     title: "In-Progress - Node.js Backend Developer",
-    institution: "From my colleagues",
+    institution: "Learning with Gemini",
     duration: "Current",
-    description: `Pursuing a course in Node.js backend development to become a full stack developer.`,
+    description: `With my trusted sidekick, Gemini, I am studying Express.js towards my goal of a fullstack developer. Ofcourse, I verify what i learn with guidance from my fellow backend engineers.`,
     link: null,
     icon: Rocket,
     tone: "from-sky-300 via-teal-200 to-lime-300",

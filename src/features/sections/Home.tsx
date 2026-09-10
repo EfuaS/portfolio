@@ -1,6 +1,6 @@
 import Typewriter from "typewriter-effect";
 import SmartImage from "../navigation-ui/SmartImage";
-import { remoteAssets } from "../../utils/remoteAssets";
+import { siteAssets } from "../../utils/siteAssets";
 import AOS from "aos";
 import { useEffect } from "react";
 import DownloadResume from "../navigation-ui/DownloadResume";
@@ -8,7 +8,7 @@ import DownloadResume from "../navigation-ui/DownloadResume";
 function HeadShotImg({ eager = false }: { eager?: boolean }) {
   return (
     <SmartImage
-      src={remoteAssets.headshot}
+      src={siteAssets.local.headshot}
       alt="Lawrencia Efua Cobbina"
       loading={eager ? "eager" : "lazy"}
       className="w-full h-full object-cover"

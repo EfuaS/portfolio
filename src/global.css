@@ -17,10 +17,10 @@
 
 /*
  * NOTE: scroll-behavior is deliberately NOT "smooth" here.
- * GSAP ScrollTrigger repositions the scrollbar while pinning/scrubbing, and a
- * native smooth-scroll animation fights it — anchor links land in the wrong
- * place or stall halfway. Nav clicks are animated with GSAP ScrollToPlugin
- * instead (see Header.tsx).
+ * As a global rule it would also apply to the scrollbar writes ScrollTrigger
+ * makes while pinning and scrubbing, which the two then fight over. Nav clicks
+ * do their own one-shot smooth scroll instead, so it only animates when we ask
+ * for it — see utils/scrollToSection.ts.
  */
 html {
   scroll-behavior: auto;

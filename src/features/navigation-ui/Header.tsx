@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import AOS from "aos";
 import { useScrollSpy } from "../../custom-hooks/useScrollSpy";
 import { scrollToSection } from "../../utils/scrollToSection";
-import { remoteAssets } from "../../utils/remoteAssets";
+import { siteAssets } from "../../utils/siteAssets";
 import SmartImage from "./SmartImage";
 
   const navItems: { label: string; path: string }[] = [
@@ -58,7 +58,7 @@ export function Header() {
         <div className="md:flex items-center hidden">
           <div className="size-14 rounded-full overflow-hidden border-2 border-teal-300 shadow-md hover:shadow-teal-300/50 transition-shadow duration-300">
             <SmartImage
-              src={remoteAssets.headshot}
+              src={siteAssets.local.headshot}
               alt="Lawrencia Efua Cobbina"
               loading="eager"
               className="w-full h-full object-cover"

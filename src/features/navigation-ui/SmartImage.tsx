@@ -4,7 +4,7 @@ import { ImageOff } from "lucide-react";
 type FallbackVariant = "monogram" | "panel";
 
 type SmartImageProps = {
-  /** Remote image URL. May be undefined/empty — the fallback renders instead. */
+  /** Image URL. May be undefined/empty — the fallback renders instead. */
   src?: string;
   alt: string;
   className?: string;
@@ -28,13 +28,17 @@ function initialsOf(label: string) {
 /**
  * An <img> that degrades gracefully instead of showing a broken-image icon.
  *
- * Remote assets live on Firebase Storage, which can stop serving them (plan
- * downgrade, expired token, deleted bucket object). When that happens the page
- * should still look deliberate, so we swap in an on-brand placeholder rather
- * than leaving a hole in the layout.
+ * Project screenshots are served from Firebase Storage, which can stop serving
+ * them (plan downgrade, rotated download token, deleted object). When that
+ * happens the page should still look deliberate, so we swap in an on-brand
+ * placeholder rather than leaving a hole in the layout.
  *
- * Also shows a shimmer while the image is in flight so slow connections get
- * feedback instead of an empty box.
+ * Note on the loading state: the shimmer sits *behind* the image rather than
+ * the image being hidden until a load event arrives. A cached or preloaded
+ * image can finish before React wires up onLoad, and `load` does not bubble —
+ * so a missed event is missed for good. Hiding the image on that path would
+ * leave it invisible forever; letting it paint over the shimmer means the
+ * worst case is a shimmer nobody ever sees.
  */
 export default function SmartImage({
   src,
@@ -45,43 +49,37 @@ export default function SmartImage({
   fallbackVariant = "monogram",
   loading = "lazy",
 }: SmartImageProps) {
-  const [status, setStatus] = useState<"loading" | "loaded" | "error">(
-    src ? "loading" : "error",
-  );
+  const [failed, setFailed] = useState(!src);
 
-  // Cached images can finish decoding before React attaches onLoad, so settle
-  // the status from the node itself the moment it mounts.
-  const measureOnMount = useCallback((node: HTMLImageElement | null) => {
+  // Callback refs run after React has attached the load/error listeners, so an
+  // image that already finished decoding is caught here instead of slipping by.
+  const checkOnMount = useCallback((node: HTMLImageElement | null) => {
     if (!node || !node.complete) return;
-    setStatus(node.naturalWidth > 0 ? "loaded" : "error");
+    if (node.naturalWidth === 0) setFailed(true);
   }, []);
 
   const label = fallbackLabel ?? alt;
-  const showFallback = status === "error";
 
   return (
     <div
       className={`@container relative isolate size-full overflow-hidden bg-slate-800/40 ${wrapperClassName}`}
     >
-      {!showFallback && src && (
-        <img
-          ref={measureOnMount}
-          src={src}
-          alt={alt}
-          loading={loading}
-          decoding="async"
-          onLoad={() => setStatus("loaded")}
-          onError={() => setStatus("error")}
-          className={`${className} ${status === "loaded" ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}
-        />
+      {!failed && src && (
+        <>
+          <div className="absolute inset-0 z-0 shimmer" aria-hidden="true" />
+          <img
+            ref={checkOnMount}
+            src={src}
+            alt={alt}
+            loading={loading}
+            decoding="async"
+            onError={() => setFailed(true)}
+            className={`relative z-10 ${className}`}
+          />
+        </>
       )}
 
-      {/* Shimmer placeholder while the bytes are still on the wire */}
-      {status === "loading" && (
-        <div className="absolute inset-0 shimmer" aria-hidden="true" />
-      )}
-
-      {showFallback &&
+      {failed &&
         (fallbackVariant === "monogram" ? (
           <div
             role="img"

@@ -72,6 +72,7 @@ export function Works() {
                 key={project.id}
                 className="glass-card lg:min-h-[70vh] h-fit w-full max-w-4xl cursor-pointer group hover:border-accent-color/30 transition-all duration-500 flex flex-col justify-between"
                 onClick={() => setSelectedProject(project)}
+                // Pointer convenience only; the button below is the accessible control.
               >
                 <div>
                   <div className="bg-gray-400/5 h-100 rounded-t-xl overflow-hidden relative flex items-center justify-center">
@@ -108,9 +109,17 @@ export function Works() {
                       </span>
                     )}
                   </div>
-                  <p className="text-xs text-slate-400 group-hover:text-accent-color transition-colors mt-4 flex items-center gap-1">
+                  <button
+                    type="button"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      setSelectedProject(project);
+                    }}
+                    aria-label={`View details for ${project.name}`}
+                    className="text-xs text-slate-400 group-hover:text-accent-color transition-colors mt-4 flex items-center gap-1 rounded-sm hover:cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-color"
+                  >
                     Click to view details <ArrowUpRight size={14} />
-                  </p>
+                  </button>
                 </div>
               </div>
             );
@@ -121,6 +130,7 @@ export function Works() {
                 key={project.id}
                 className="glass-card h-fit w-full max-w-4xl cursor-pointer group hover:border-accent-color/30 transition-all duration-500 flex flex-col relative overflow-hidden p-8"
                 onClick={() => setSelectedProject(project)}
+                // Pointer convenience only; the button below is the accessible control.
               >
                 {/* Visual glow backdrop decoration */}
                 <div className="absolute -right-20 -top-20 size-60 bg-accent-color/5 rounded-full blur-3xl pointer-events-none group-hover:bg-accent-color/10 transition-all duration-500" />
@@ -182,9 +192,17 @@ export function Works() {
                       </span>
                     )}
                   </div>
-                  <p className="text-xs text-slate-400 group-hover:text-accent-color transition-colors mt-6 flex items-center gap-1">
+                  <button
+                    type="button"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      setSelectedProject(project);
+                    }}
+                    aria-label={`View full case study for ${project.name}`}
+                    className="text-xs text-slate-400 group-hover:text-accent-color transition-colors mt-6 flex items-center gap-1 rounded-sm hover:cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-color"
+                  >
                     Click to view full case study <ArrowUpRight size={14} />
-                  </p>
+                  </button>
                 </div>
               </div>
             );

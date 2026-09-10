@@ -15,7 +15,7 @@ const socialLinks = [
   {
     icon: linkedInIcon,
     alt: "linkedIn",
-    link: "https://www.linkedin.com/in/lawrencia-cobbina/?lipi=urn%3Ali%3Apage%3Ad_flagship3_feed%3BPJBl40ViTtO1x5KzxrHjKg%3D%3D",
+    link: "https://www.linkedin.com/in/lawrencia-cobbina/",
   },
   {
     icon: githubIcon,

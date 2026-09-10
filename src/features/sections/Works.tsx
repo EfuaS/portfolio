@@ -25,14 +25,36 @@ export function Works() {
       const mm = gsap.matchMedia();
 
       mm.add("(min-width: 768px)", () => {
-        gsap.to(works.current, {
-          yPercent: projects.length * -11,
+        const track = works.current as HTMLDivElement | null;
+        if (!track) return;
+
+        /**
+         * How far the column must travel for the last project to reach the
+         * viewport.
+         *
+         * This was `yPercent: projects.length * -11`, which only looks right
+         * because -88% happens to land within 1.5% of the true figure at
+         * exactly eight projects. A ninth would ask for -99% and overshoot by
+         * roughly 630px, scrolling the last card off the top. Measuring keeps
+         * it correct at any project count and viewport height.
+         */
+        const distance = () => {
+          const last = track.lastElementChild as HTMLElement | null;
+          if (!last) return 0;
+          const extent = last.offsetTop + last.offsetHeight - track.offsetTop;
+          return Math.max(0, extent - document.documentElement.clientHeight);
+        };
+
+        gsap.to(track, {
+          y: () => -distance(),
+          ease: "none", // linear, so the scrub maps evenly to scroll
           scrollTrigger: {
             id: "my-works",
             trigger: myWorksSection.current,
             pin: true,
             scrub: 1,
             start: "top 15%",
+            invalidateOnRefresh: true, // re-measure on resize and late content
           },
         });
       });

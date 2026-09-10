@@ -24,6 +24,21 @@
  */
 html {
   scroll-behavior: auto;
+
+  /*
+   * Suppress a phantom horizontal scrollbar.
+   *
+   * During early layout — before the stylesheet applies and before
+   * ScrollTrigger builds its pin-spacers — the wide horizontal timeline
+   * briefly overflows the document. That is enough for the browser to add a
+   * horizontal scrollbar, which it then keeps even though scrollWidth ends up
+   * equal to clientWidth: a bar with nothing behind it that cannot be dragged.
+   *
+   * `clip` rather than `hidden` on purpose — `hidden` would turn the root into
+   * a scroll container, which interferes with ScrollTrigger and position:
+   * sticky. `clip` just clips.
+   */
+  overflow-x: clip;
 }
 
 /* Keep the fixed header from covering a section it was scrolled to. */

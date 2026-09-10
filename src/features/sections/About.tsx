@@ -52,7 +52,7 @@ const aspirations = [
 ];
 export function About() {
   return (
-    <section id="my-story" className="px-6 max-w-7xl mx-auto">
+    <section id="my-story" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <SectionHeader header="My Story" title="About the Developer" />
 
       <div className="mt-10 grid gap-6 lg:grid-cols-4 lg:grid-rows-3 relative ">

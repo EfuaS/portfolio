@@ -98,6 +98,7 @@ export function Education() {
           // target the milestones cards div
           xPercent: -3 * timeline.length, // translate the section to about 2 times the width of the cards to show all cards.
           scrollTrigger: {
+            id: "my-journey",
             trigger: myJourneySection.current, // trigger the translation when myJourneySection comes into view.
             start: "top 20%", //to properly center the milestone cards.
             pin: true, // needed to stick the content while the animation plays
@@ -125,12 +126,14 @@ export function Education() {
       ref={myJourneySection}
       className="w-full mx-auto overflow-hidden"
     >
-      <SectionHeader header="My Journey" title="Education & Experience" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionHeader header="My Journey" title="Education & Experience" />
+      </div>
 
       {/* Timeline of Developer Journey Milestones */}
       <div
         ref={milestonesContainer}
-        className="flex gap-6 md:gap-8 min-w-full pl-10"
+        className="flex gap-6 md:gap-8 min-w-full pl-4 sm:pl-6 lg:pl-8 pt-6"
       >
         {timeline.map((item, index) => {
           const Icon = item.icon;
@@ -139,7 +142,7 @@ export function Education() {
               key={item.title}
               className="milestone"
               data-aos="zoom-in"
-              data-aos-delay={index * 250}
+              data-aos-delay={Math.min(index * 120, 480)}
             >
               <div className="flex flex-col items-start gap-4 ">
                 <div className="relative">

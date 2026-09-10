@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { experienceData } from "../../utils/projectsContent";
 import type { ExperienceDTO } from "../../utils/projectsContent";
 import ProjectModal from "../navigation-ui/ProjectModal";
+import SmartImage from "../navigation-ui/SmartImage";
 import { ArrowUpRight, Cpu, Tag, Sparkles, BookOpen } from "lucide-react";
 
 const projects = experienceData;
@@ -27,6 +28,7 @@ export function Works() {
         gsap.to(works.current, {
           yPercent: projects.length * -11,
           scrollTrigger: {
+            id: "my-works",
             trigger: myWorksSection.current,
             pin: true,
             scrub: 1,
@@ -48,7 +50,7 @@ export function Works() {
     <section
       ref={myWorksSection}
       id="my-works"
-      className="grid grid-cols-1 lg:grid-cols-3 lg:h-screen lg:overflow-hidden"
+      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 lg:h-screen lg:overflow-hidden"
     >
       <div className="lg:col-span-1 grid place-content-center lg:max-h-screen">
         <SectionHeader
@@ -68,14 +70,15 @@ export function Works() {
             return (
               <div
                 key={project.id}
-                className="glass-card lg:min-h-[70vh] h-fit w-90 md:w-4xl cursor-pointer group hover:border-accent-color/30 transition-all duration-500 flex flex-col justify-between"
+                className="glass-card lg:min-h-[70vh] h-fit w-full max-w-4xl cursor-pointer group hover:border-accent-color/30 transition-all duration-500 flex flex-col justify-between"
                 onClick={() => setSelectedProject(project)}
               >
                 <div>
                   <div className="bg-gray-400/5 h-100 rounded-t-xl overflow-hidden relative flex items-center justify-center">
-                    <img
+                    <SmartImage
                       src={project.image}
                       alt={project.name}
+                      fallbackVariant="panel"
                       className="object-cover size-full group-hover:scale-105 duration-1000 ease-in-out"
                     />
                     <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-slate-950/0 transition-all duration-500" />
@@ -116,7 +119,7 @@ export function Works() {
             return (
               <div
                 key={project.id}
-                className="glass-card h-fit w-90 md:w-4xl cursor-pointer group hover:border-accent-color/30 transition-all duration-500 flex flex-col relative overflow-hidden p-8"
+                className="glass-card h-fit w-full max-w-4xl cursor-pointer group hover:border-accent-color/30 transition-all duration-500 flex flex-col relative overflow-hidden p-8"
                 onClick={() => setSelectedProject(project)}
               >
                 {/* Visual glow backdrop decoration */}

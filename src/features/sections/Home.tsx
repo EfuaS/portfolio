@@ -1,18 +1,19 @@
 import Typewriter from "typewriter-effect";
+import SmartImage from "../navigation-ui/SmartImage";
+import { remoteAssets } from "../../utils/remoteAssets";
 import AOS from "aos";
 import { useEffect } from "react";
 import DownloadResume from "../navigation-ui/DownloadResume";
 
-function HeadShotImg() {
+function HeadShotImg({ eager = false }: { eager?: boolean }) {
   return (
-    <img
-      src="https://firebasestorage.googleapis.com/v0/b/efuas-portfolio-website.firebasestorage.app/o/assets%2Fheadshot.webp?alt=media&token=aafc8028-8231-4db9-a1eb-b02d499f6bf6"
-      alt="headShot"
+    <SmartImage
+      src={remoteAssets.headshot}
+      alt="Lawrencia Efua Cobbina"
+      loading={eager ? "eager" : "lazy"}
       className="w-full h-full object-cover"
-      // TODO: add shimmer while image loads
     />
   );
-
 }
 
 export function Home() {
@@ -22,7 +23,7 @@ export function Home() {
   }, []);
 
   return (
-    <section id="home" className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
+    <section id="home" className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="lg:h-[80vh] grid grid-cols-1 lg:grid-cols-2 items-center">
         {/* Mobile view smaller image */}
         <div className="size-80 m-auto block mb-4 md:hidden rounded-full shadow-xl overflow-hidden">
@@ -91,7 +92,7 @@ export function Home() {
               { label: "Projects", metric: "7" },
               { label: "Certifications", metric: "2" },
             ].map((stat) => (
-              <div>
+              <div key={stat.label}>
                 <p className="text-4xl text-teal-400 text-center font-bold ">
                   {stat.metric}
                 </p>
@@ -110,7 +111,7 @@ export function Home() {
           className="hidden lg:flex items-center justify-center h-[95%] "
         >
           <div className="size-full rounded-3xl shadow-xl overflow-hidden">
-            <HeadShotImg />
+            <HeadShotImg eager />
           </div>
         </div>
       </div>

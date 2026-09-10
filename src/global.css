@@ -15,8 +15,20 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/*
+ * NOTE: scroll-behavior is deliberately NOT "smooth" here.
+ * GSAP ScrollTrigger repositions the scrollbar while pinning/scrubbing, and a
+ * native smooth-scroll animation fights it — anchor links land in the wrong
+ * place or stall halfway. Nav clicks are animated with GSAP ScrollToPlugin
+ * instead (see Header.tsx).
+ */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+}
+
+/* Keep the fixed header from covering a section it was scrolled to. */
+section[id] {
+  scroll-margin-top: 6rem;
 }
 
 body {
@@ -88,4 +100,74 @@ h1 {
 
 .hover-jiggle:hover {
   animation: jiggle 0.5s ease-in-out;
+}
+
+/* Loading placeholder for images still in flight (see SmartImage). */
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.shimmer {
+  background-color: rgba(148, 163, 184, 0.08);
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(148, 163, 184, 0.14),
+    transparent
+  );
+  animation: shimmer 1.6s infinite;
+}
+
+/*
+ * Respect the OS "reduce motion" setting. This site leans hard on animation
+ * (AOS, GSAP scrub, breeze/jiggle, typewriter), which can trigger nausea or
+ * migraines for motion-sensitive visitors.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .breeze-card {
+    animation: none;
+  }
+}
+
+/*
+ * Header entrance.
+ *
+ * This used to be an AOS "fade-down", but AOS holds the element at
+ * translateY(-100px) until it decides to animate it in — and the header is
+ * position:fixed, so that parks the site's only navigation above the viewport
+ * where it can't be seen or clicked. A plain CSS animation always runs to
+ * completion, so the nav can never get stranded off-screen.
+ */
+@keyframes header-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header-drop {
+  animation: header-drop 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }

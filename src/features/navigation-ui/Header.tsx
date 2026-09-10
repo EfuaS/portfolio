@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import AOS from "aos";
 import { useScrollSpy } from "../../custom-hooks/useScrollSpy";
 import { scrollToSection } from "../../utils/scrollToSection";
 import { siteAssets } from "../../utils/siteAssets";
@@ -23,11 +22,6 @@ export function Header() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    AOS.init();
-    AOS.refresh();
   }, []);
 
   const handleNavClick = (

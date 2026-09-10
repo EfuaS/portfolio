@@ -1,8 +1,6 @@
 import Typewriter from "typewriter-effect";
 import SmartImage from "../navigation-ui/SmartImage";
 import { siteAssets } from "../../utils/siteAssets";
-import AOS from "aos";
-import { useEffect } from "react";
 import DownloadResume from "../navigation-ui/DownloadResume";
 
 function HeadShotImg({ eager = false }: { eager?: boolean }) {
@@ -17,11 +15,6 @@ function HeadShotImg({ eager = false }: { eager?: boolean }) {
 }
 
 export function Home() {
-  useEffect(() => {
-    AOS.init();
-    AOS.refresh();
-  }, []);
-
   return (
     <section id="home" className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="lg:h-[80vh] grid grid-cols-1 lg:grid-cols-2 items-center">

@@ -1,7 +1,5 @@
 import { Smile } from "lucide-react";
 import DownloadResume from "../navigation-ui/DownloadResume";
-import AOS from "aos";
-import { useEffect } from "react";
 import githubIcon from "../../assets/github-icon.svg";
 import linkedInIcon from "../../assets/linkedin-icon.svg";
 import mailIcon from "../../assets/email-icon.svg";
@@ -25,10 +23,6 @@ const socialLinks = [
 ];
 
 export default function Footer() {
-  useEffect(() => {
-    AOS.init();
-    AOS.refresh();
-  }, []);
   return (
     <footer
       className="bg-[#020617] min-h-[30vh] lg:rounded-t-[100px]"

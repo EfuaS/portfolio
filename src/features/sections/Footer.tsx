@@ -50,6 +50,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.alt}
+                className="tap-target"
                 href={social.link}
               >
                 <img src={social.icon} alt={social.alt} width={35} />

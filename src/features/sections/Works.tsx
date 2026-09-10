@@ -138,7 +138,7 @@ export function Works() {
                       setSelectedProject(project);
                     }}
                     aria-label={`View details for ${project.name}`}
-                    className="text-xs text-slate-400 group-hover:text-accent-color transition-colors mt-4 flex items-center gap-1 rounded-sm hover:cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-color"
+                    className="tap-target text-xs text-slate-400 group-hover:text-accent-color transition-colors mt-4 flex items-center gap-1 rounded-sm hover:cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-color"
                   >
                     Click to view details <ArrowUpRight size={14} />
                   </button>
@@ -221,7 +221,7 @@ export function Works() {
                       setSelectedProject(project);
                     }}
                     aria-label={`View full case study for ${project.name}`}
-                    className="text-xs text-slate-400 group-hover:text-accent-color transition-colors mt-6 flex items-center gap-1 rounded-sm hover:cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-color"
+                    className="tap-target text-xs text-slate-400 group-hover:text-accent-color transition-colors mt-6 flex items-center gap-1 rounded-sm hover:cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-color"
                   >
                     Click to view full case study <ArrowUpRight size={14} />
                   </button>

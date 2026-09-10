@@ -226,7 +226,7 @@ export function Education() {
                           href={item.link}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex items-center gap-2 text-xs text-accent-color mt-3"
+                          className="tap-target inline-flex items-center gap-2 text-xs text-accent-color mt-3"
                         >
                           Check it out
                           <ArrowUpRight size={14} />

@@ -19,6 +19,8 @@
 export const siteAssets = {
   local: {
     headshot: "/headshot.webp",
+    /** Keep this in step with the filename in public/. */
+    resume: "/Lawrencia_Cobbina_Resume.pdf",
   },
   remote: {
     mcMarine:

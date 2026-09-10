@@ -94,18 +94,49 @@ export function Education() {
       const matchMedia = gsap.matchMedia();
 
       matchMedia.add("(min-width: 768px)", () => {
-        gsap.to(milestonesContainer.current, {
-          // target the milestones cards div
-          xPercent: -3 * timeline.length, // translate the section to about 2 times the width of the cards to show all cards.
+        const track = milestonesContainer.current as HTMLDivElement | null;
+        const section = myJourneySection.current as HTMLElement | null;
+        if (!track || !section) return;
+
+        /**
+         * How far the track must travel for the last milestone to clear the
+         * right edge, plus a trailing gutter that mirrors the leading one.
+         *
+         * This used to be a hardcoded `xPercent: -3 * timeline.length`, which
+         * under-scrolled: the percentage is of the track width, so it drifts
+         * further out of step every time a milestone is added and left the
+         * final card clipped. Measuring gets it right at any card count or
+         * viewport width.
+         */
+        const distance = () => {
+          const last = track.lastElementChild as HTMLElement | null;
+          if (!last) return 0;
+          const gutter = parseFloat(getComputedStyle(track).paddingLeft) || 0;
+          // offsetLeft/offsetWidth are layout values, so they ignore both the
+          // GSAP transform and the cards’ breeze animation. Measured against the
+          // viewport rather than the section, whose box ScrollTrigger mutates
+          // when it pins — using the section here under-measured by ~54px and
+          // left the last card clipped.
+          const extent = last.offsetLeft + last.offsetWidth - track.offsetLeft;
+          return Math.max(
+            0,
+            extent + gutter - document.documentElement.clientWidth,
+          );
+        };
+
+        gsap.to(track, {
+          x: () => -distance(),
+          ease: "none", // linear, so the scrub maps 1:1 to scroll
           scrollTrigger: {
             id: "my-journey",
-            trigger: myJourneySection.current, // trigger the translation when myJourneySection comes into view.
+            trigger: section, // trigger the translation when myJourneySection comes into view.
             start: "top 20%", //to properly center the milestone cards.
+            end: () => "+=" + distance(), // pin for exactly as long as there is track left
             pin: true, // needed to stick the content while the animation plays
             scrub: 1,
+            invalidateOnRefresh: true, // re-measure on resize and late-loading content
           },
         });
-
       });
       // Apply draggable plugin in mobil views
       matchMedia.add("(max-width: 768px)", () => {

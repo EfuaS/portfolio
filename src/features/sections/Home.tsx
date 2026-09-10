@@ -57,7 +57,9 @@ export function Home() {
             Lawrencia Efua Cobbina
           </h1>
 
-          <h1 className="text-xl">
+          {/* Rotating job title. Not a heading — the page has one h1 (the name).
+              text-accent-color replaces the colour the global h1 rule used to give it. */}
+          <p className="text-xl text-accent-color">
             {/* Typewritter effect */}
             <Typewriter
               options={{
@@ -72,7 +74,7 @@ export function Home() {
                 loop: true,
               }}
             />
-          </h1>
+          </p>
 
           {/* Description */}
           <p className="text-md max-w-lg leading-relaxed">
@@ -89,7 +91,7 @@ export function Home() {
           <div className="flex gap-8 pt-4">
             {[
               { label: "Experience", metric: "4 yrs" },
-              { label: "Projects", metric: "7" },
+              { label: "Projects", metric: "7+" },
               { label: "Certifications", metric: "2" },
             ].map((stat) => (
               <div key={stat.label}>

@@ -186,14 +186,14 @@ export function Education() {
       ref={myJourneySection}
       className="w-full mx-auto overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[90rem] mx-auto px-4 sm:px-6 md:px-10 lg:px-20">
         <SectionHeader header="My Journey" title="Education & Experience" />
       </div>
 
       {/* Timeline of Developer Journey Milestones */}
       <div
         ref={milestonesContainer}
-        className="flex gap-6 md:gap-8 min-w-full pl-4 sm:pl-6 lg:pl-8 pt-6"
+        className="flex gap-6 md:gap-8 min-w-full pl-4 sm:pl-6 md:pl-10 lg:pl-20 pt-6"
       >
         {timeline.map((item, index) => {
           const Icon = item.icon;

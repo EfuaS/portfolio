@@ -72,7 +72,7 @@ export function Works() {
     <section
       ref={myWorksSection}
       id="my-works"
-      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 lg:h-screen lg:overflow-hidden"
+      className="max-w-[90rem] mx-auto px-4 sm:px-6 md:px-10 lg:px-20 grid grid-cols-1 lg:grid-cols-3 lg:h-screen lg:overflow-hidden"
     >
       <div className="lg:col-span-1 grid place-content-center lg:max-h-screen">
         <SectionHeader

@@ -16,7 +16,7 @@ function HeadShotImg({ eager = false }: { eager?: boolean }) {
 
 export function Home() {
   return (
-    <section id="home" className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="home" className="py-24 max-w-[90rem] mx-auto px-4 sm:px-6 md:px-10 lg:px-20">
       <div className="lg:h-[80vh] grid grid-cols-1 lg:grid-cols-2 items-center">
         {/* Mobile view smaller image */}
         <div className="size-80 m-auto block mb-4 md:hidden rounded-full shadow-xl overflow-hidden">

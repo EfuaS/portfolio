@@ -46,7 +46,7 @@ export function Header() {
     >
       <nav
         aria-label="Main"
-        className="header-drop max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between"
+        className="header-drop max-w-[90rem] mx-auto px-4 sm:px-6 md:px-10 lg:px-20 py-4 flex items-center justify-between"
       >
         {/* Profile Image / Logo */}
         <div className="md:flex items-center hidden">

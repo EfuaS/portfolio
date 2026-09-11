@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { X, ArrowUpRight, Award, ShieldAlert, Cpu, Users, Tag } from "lucide-react";
 import type { ExperienceDTO } from "../../utils/projectsContent";
@@ -14,20 +14,57 @@ export default function ProjectModal({
   project,
   onClose,
 }: ProjectModalProps) {
+  const dialogRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (!isOpen) return;
 
     // Lock body scroll
     document.body.style.overflow = "hidden";
 
+    // Send focus into the dialog, and remember where to put it back.
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+    dialogRef.current?.focus();
+
+    const focusable = () =>
+      Array.from(
+        dialogRef.current?.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])',
+        ) ?? [],
+      ).filter((el) => el.offsetParent !== null);
+
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        onClose();
+        return;
+      }
+      if (e.key !== "Tab") return;
+
+      // Trap Tab inside the dialog so focus cannot wander behind the backdrop.
+      const items = focusable();
+      if (items.length === 0) {
+        e.preventDefault();
+        return;
+      }
+      const first = items[0];
+      const last = items[items.length - 1];
+      const active = document.activeElement;
+
+      if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus();
+      } else if (e.shiftKey && (active === first || active === dialogRef.current)) {
+        e.preventDefault();
+        last.focus();
+      }
     };
+
     window.addEventListener("keydown", onKey);
 
     return () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKey);
+      previouslyFocused?.focus();
     };
   }, [isOpen, onClose]);
 
@@ -36,13 +73,16 @@ export default function ProjectModal({
   return createPortal(
     <div className="fixed inset-0 z-100 flex items-center justify-center p-4">
       {/* Backdrop */}
-      <div 
-        className="absolute inset-0 bg-slate-950/80 backdrop-blur-md transition-opacity duration-300" 
-        onClick={onClose} 
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-slate-950/80 backdrop-blur-md transition-opacity duration-300"
+        onClick={onClose}
       />
       
       {/* Modal Container */}
       <div
+        ref={dialogRef}
+        tabIndex={-1}
         className="relative max-w-3xl w-full bg-slate-900/90 border border-white/10 rounded-2xl shadow-2xl p-6 md:p-8 overflow-y-auto max-h-[85vh] backdrop-blur-xl text-slate-100 animate-in fade-in zoom-in-95 duration-200"
         role="dialog"
         aria-modal="true"

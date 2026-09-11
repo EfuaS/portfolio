@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import AOS from "aos";
 import { useScrollSpy } from "../../custom-hooks/useScrollSpy";
+import { scrollToSection } from "../../utils/scrollToSection";
+import { siteAssets } from "../../utils/siteAssets";
+import SmartImage from "./SmartImage";
 
   const navItems: { label: string; path: string }[] = [
     { label: "Home", path: "home" },
@@ -18,15 +20,21 @@ export function Header() {
       setIsScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    AOS.init();
-    AOS.refresh();
-  }, []);
-
+  const handleNavClick = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    path: string,
+  ) => {
+    // Let modified clicks (new tab, new window) behave normally.
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) {
+      return;
+    }
+    event.preventDefault();
+    scrollToSection(path);
+  };
 
   return (
     <header
@@ -37,16 +45,16 @@ export function Header() {
       }`}
     >
       <nav
-        data-aos="fade-down"
-        data-aos-duration="1000"
-        className="max-w-7xl mx-auto py-4 flex items-center justify-between"
+        aria-label="Main"
+        className="header-drop max-w-[90rem] mx-auto px-4 sm:px-6 md:px-10 lg:px-20 py-4 flex items-center justify-between"
       >
         {/* Profile Image / Logo */}
         <div className="md:flex items-center hidden">
           <div className="size-14 rounded-full overflow-hidden border-2 border-teal-300 shadow-md hover:shadow-teal-300/50 transition-shadow duration-300">
-            <img
-              src="https://firebasestorage.googleapis.com/v0/b/efuas-portfolio-website.firebasestorage.app/o/assets%2Fheadshot.webp?alt=media&token=aafc8028-8231-4db9-a1eb-b02d499f6bf6"
-              alt="headShot"
+            <SmartImage
+              src={siteAssets.local.headshot}
+              alt="Lawrencia Efua Cobbina"
+              loading="eager"
               className="w-full h-full object-cover"
             />
           </div>
@@ -60,9 +68,11 @@ export function Header() {
               <li key={item.label}>
                 <a
                   href={"#" + item.path}
-                  className={`text-nowrap ease-in-out duration-300 px-3 py-1.5 rounded-full hover:bg-teal-400/10 hover:text-teal-300 ${
+                  onClick={(event) => handleNavClick(event, item.path)}
+                  aria-current={isActive ? "true" : undefined}
+                  className={`inline-flex items-center text-nowrap ease-in-out duration-300 px-3 py-3 rounded-full hover:bg-teal-400/10 hover:text-teal-300 ${
                     isActive
-                      ? "text-teal-300 font-semibold text-lg animate-pulse"
+                      ? "text-teal-300 font-semibold text-lg"
                       : "text-secondary-text-color font-light text-normal"
                   }`}
                 >

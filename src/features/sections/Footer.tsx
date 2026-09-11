@@ -1,7 +1,5 @@
 import { Smile } from "lucide-react";
 import DownloadResume from "../navigation-ui/DownloadResume";
-import AOS from "aos";
-import { useEffect } from "react";
 import githubIcon from "../../assets/github-icon.svg";
 import linkedInIcon from "../../assets/linkedin-icon.svg";
 import mailIcon from "../../assets/email-icon.svg";
@@ -15,7 +13,7 @@ const socialLinks = [
   {
     icon: linkedInIcon,
     alt: "linkedIn",
-    link: "https://www.linkedin.com/in/lawrencia-cobbina/?lipi=urn%3Ali%3Apage%3Ad_flagship3_feed%3BPJBl40ViTtO1x5KzxrHjKg%3D%3D",
+    link: "https://www.linkedin.com/in/lawrencia-cobbina/",
   },
   {
     icon: githubIcon,
@@ -25,10 +23,6 @@ const socialLinks = [
 ];
 
 export default function Footer() {
-  useEffect(() => {
-    AOS.init();
-    AOS.refresh();
-  }, []);
   return (
     <footer
       className="bg-[#020617] min-h-[30vh] lg:rounded-t-[100px]"
@@ -51,7 +45,14 @@ export default function Footer() {
 
           <div className="flex gap-3">
             {socialLinks.map((social) => (
-              <a target="_blank" href={social.link}>
+              <a
+                key={social.alt}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.alt}
+                className="tap-target"
+                href={social.link}
+              >
                 <img src={social.icon} alt={social.alt} width={35} />
               </a>
             ))}

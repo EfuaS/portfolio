@@ -1,3 +1,5 @@
+import { siteAssets } from "./siteAssets";
+
 export type ExperienceDTO = {
   id: string;
   role: string;
@@ -34,8 +36,7 @@ export const experienceData: ExperienceDTO[] = [
       "Hostinger",
     ],
     link: `https://mcmarineservices.com/`,
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/efuas-portfolio-website.firebasestorage.app/o/assets%2Fmcmarine.webp?alt=media&token=90e717f7-904e-4c21-af27-792a11abd7d0",
+    image: siteAssets.remote.mcMarine,
   },
   {
     id: "grantspace",
@@ -158,8 +159,7 @@ export const experienceData: ExperienceDTO[] = [
 Tackling essential features like secure authentication, transfers, and bill payments under a tight timeline proved that I can ship high-quality code at lightning speed when the pressure is on.`,
     teamSize: `6`,
     link: `https://www.kacha.et/`,
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/efuas-portfolio-website.firebasestorage.app/o/assets%2Fkacha.webp?alt=media&token=d46ef3de-7cfd-4744-a8d1-5859ddff338d",
+    image: siteAssets.remote.kacha,
     challengeFaced: `Nothing teaches you how to build software quite like a tight deadline on a large-scale project. I was tasked with helping launch three distinct app portals, requiring me to crank out five user stories a week. As a junior dev, this meant balancing a massive delivery schedule with a steep learning curve as I mastered React on the job. By focusing on rapid adaptation and clean coding practices, I didn't just help hit our launch date—I built a rock-solid foundation for my frontend career.`,
     businessImpact: `Shipping the Kacha financial app at lightning speed meant we got it into users' hands right when they needed it most. I got to build core features like secure transactions, quick money transfers, and digital lending—tools that genuinely make a difference in people's daily financial lives.
 

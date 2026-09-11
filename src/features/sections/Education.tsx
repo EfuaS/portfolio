@@ -94,24 +94,85 @@ export function Education() {
       const matchMedia = gsap.matchMedia();
 
       matchMedia.add("(min-width: 768px)", () => {
-        gsap.to(milestonesContainer.current, {
-          // target the milestones cards div
-          xPercent: -3 * timeline.length, // translate the section to about 2 times the width of the cards to show all cards.
+        const track = milestonesContainer.current as HTMLDivElement | null;
+        const section = myJourneySection.current as HTMLElement | null;
+        if (!track || !section) return;
+
+        /**
+         * How far the track must travel for the last milestone to clear the
+         * right edge, plus a trailing gutter that mirrors the leading one.
+         *
+         * This used to be a hardcoded `xPercent: -3 * timeline.length`, which
+         * under-scrolled: the percentage is of the track width, so it drifts
+         * further out of step every time a milestone is added and left the
+         * final card clipped. Measuring gets it right at any card count or
+         * viewport width.
+         */
+        const distance = () => {
+          const last = track.lastElementChild as HTMLElement | null;
+          if (!last) return 0;
+          const gutter = parseFloat(getComputedStyle(track).paddingLeft) || 0;
+          // offsetLeft/offsetWidth are layout values, so they ignore both the
+          // GSAP transform and the cards’ breeze animation. Measured against the
+          // viewport rather than the section, whose box ScrollTrigger mutates
+          // when it pins — using the section here under-measured by ~54px and
+          // left the last card clipped.
+          const extent = last.offsetLeft + last.offsetWidth - track.offsetLeft;
+          return Math.max(
+            0,
+            extent + gutter - document.documentElement.clientWidth,
+          );
+        };
+
+        gsap.to(track, {
+          x: () => -distance(),
+          ease: "none", // linear, so the scrub maps 1:1 to scroll
           scrollTrigger: {
-            trigger: myJourneySection.current, // trigger the translation when myJourneySection comes into view.
+            id: "my-journey",
+            trigger: section, // trigger the translation when myJourneySection comes into view.
             start: "top 20%", //to properly center the milestone cards.
+            end: () => "+=" + distance(), // pin for exactly as long as there is track left
             pin: true, // needed to stick the content while the animation plays
             scrub: 1,
+            invalidateOnRefresh: true, // re-measure on resize and late-loading content
           },
         });
-
       });
-      // Apply draggable plugin in mobil views
-      matchMedia.add("(max-width: 768px)", () => {
-        Draggable.create(milestonesContainer.current, {
+      // Drag the timeline on touch, where there is no room to pin and scrub.
+      // 767px, not 768px: the pinned branch above starts at 768px, so sharing
+      // that value left both branches active at exactly 768px wide.
+      matchMedia.add("(max-width: 767px)", () => {
+        const track = milestonesContainer.current as HTMLDivElement | null;
+        if (!track) return;
+
+        /**
+         * How far left the track may be dragged before the last milestone is
+         * flush with the right edge.
+         *
+         * Bounds were commented out, which let the timeline be flung off-screen
+         * in either direction with no way back — the section is overflow-hidden,
+         * so there is no scrollbar to recover it.
+         */
+        const limit = () => {
+          const last = track.lastElementChild as HTMLElement | null;
+          if (!last) return 0;
+          const gutter = parseFloat(getComputedStyle(track).paddingLeft) || 0;
+          const extent = last.offsetLeft + last.offsetWidth - track.offsetLeft;
+          return Math.max(
+            0,
+            extent + gutter - document.documentElement.clientWidth,
+          );
+        };
+
+        const [drag] = Draggable.create(track, {
           type: "x",
-          // bounds: myJourneySection.current,
+          bounds: { minX: -limit(), maxX: 0 },
         });
+
+        // Rotating the phone changes how much of the track is off-screen.
+        const onResize = () => drag?.applyBounds({ minX: -limit(), maxX: 0 });
+        window.addEventListener("resize", onResize);
+        return () => window.removeEventListener("resize", onResize);
       });
 
       return () => matchMedia.revert();
@@ -125,12 +186,14 @@ export function Education() {
       ref={myJourneySection}
       className="w-full mx-auto overflow-hidden"
     >
-      <SectionHeader header="My Journey" title="Education & Experience" />
+      <div className="max-w-[90rem] mx-auto px-4 sm:px-6 md:px-10 lg:px-20">
+        <SectionHeader header="My Journey" title="Education & Experience" />
+      </div>
 
       {/* Timeline of Developer Journey Milestones */}
       <div
         ref={milestonesContainer}
-        className="flex gap-6 md:gap-8 min-w-full pl-10"
+        className="flex gap-6 md:gap-8 min-w-full pl-4 sm:pl-6 md:pl-10 lg:pl-20 pt-6"
       >
         {timeline.map((item, index) => {
           const Icon = item.icon;
@@ -139,7 +202,7 @@ export function Education() {
               key={item.title}
               className="milestone"
               data-aos="zoom-in"
-              data-aos-delay={index * 250}
+              data-aos-delay={Math.min(index * 120, 480)}
             >
               <div className="flex flex-col items-start gap-4 ">
                 <div className="relative">
@@ -192,7 +255,7 @@ export function Education() {
                           href={item.link}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex items-center gap-2 text-xs text-accent-color mt-3"
+                          className="tap-target inline-flex items-center gap-2 text-xs text-accent-color mt-3"
                         >
                           Check it out
                           <ArrowUpRight size={14} />

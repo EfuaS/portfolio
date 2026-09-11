@@ -138,12 +138,41 @@ export function Education() {
           },
         });
       });
-      // Apply draggable plugin in mobil views
-      matchMedia.add("(max-width: 768px)", () => {
-        Draggable.create(milestonesContainer.current, {
+      // Drag the timeline on touch, where there is no room to pin and scrub.
+      // 767px, not 768px: the pinned branch above starts at 768px, so sharing
+      // that value left both branches active at exactly 768px wide.
+      matchMedia.add("(max-width: 767px)", () => {
+        const track = milestonesContainer.current as HTMLDivElement | null;
+        if (!track) return;
+
+        /**
+         * How far left the track may be dragged before the last milestone is
+         * flush with the right edge.
+         *
+         * Bounds were commented out, which let the timeline be flung off-screen
+         * in either direction with no way back — the section is overflow-hidden,
+         * so there is no scrollbar to recover it.
+         */
+        const limit = () => {
+          const last = track.lastElementChild as HTMLElement | null;
+          if (!last) return 0;
+          const gutter = parseFloat(getComputedStyle(track).paddingLeft) || 0;
+          const extent = last.offsetLeft + last.offsetWidth - track.offsetLeft;
+          return Math.max(
+            0,
+            extent + gutter - document.documentElement.clientWidth,
+          );
+        };
+
+        const [drag] = Draggable.create(track, {
           type: "x",
-          // bounds: myJourneySection.current,
+          bounds: { minX: -limit(), maxX: 0 },
         });
+
+        // Rotating the phone changes how much of the track is off-screen.
+        const onResize = () => drag?.applyBounds({ minX: -limit(), maxX: 0 });
+        window.addEventListener("resize", onResize);
+        return () => window.removeEventListener("resize", onResize);
       });
 
       return () => matchMedia.revert();

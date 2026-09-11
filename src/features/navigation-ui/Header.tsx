@@ -70,7 +70,7 @@ export function Header() {
                   href={"#" + item.path}
                   onClick={(event) => handleNavClick(event, item.path)}
                   aria-current={isActive ? "true" : undefined}
-                  className={`text-nowrap ease-in-out duration-300 px-3 py-3 rounded-full hover:bg-teal-400/10 hover:text-teal-300 ${
+                  className={`inline-flex items-center text-nowrap ease-in-out duration-300 px-3 py-3 rounded-full hover:bg-teal-400/10 hover:text-teal-300 ${
                     isActive
                       ? "text-teal-300 font-semibold text-lg"
                       : "text-secondary-text-color font-light text-normal"
